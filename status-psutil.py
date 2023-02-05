@@ -9,10 +9,12 @@ import time
 import json
 import psutil
 from collections import deque
+import socket
 
 SERVER = "status.crcc.ml"
 PORT = 35601
-USER = "HK4"
+#USER = "HK4"
+USER = socket.gethostname().lower() #手动修改为二级域名 或者直接获取主机名为二级域名
 PASSWORD = "az.%jm"
 INTERVAL = 1  # 更新间隔，单位：秒
 

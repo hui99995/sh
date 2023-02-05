@@ -6,13 +6,12 @@ name="cooo_backup" #name 手动配置修改
 loc="/usr/cooo_backup" #本地挂载路径
 loc_remote="/" #远程挂载路径 /为根目录 根据实际需求写路径
 loc_config="/root/.config/rclone/rclone.conf" #配置文件路径
+loc_sh="/usr/sju/sh" #挂载脚本路径
 mkdir -p $loc /var/ds #创建挂载目录 日志目录
 
 if [[ $1 = nohup ]]; then
 	fusermount -qzu $loc #先卸载再挂载
-	lj=`pwd`  #获取当前路径
-	echo $lj
-	nohup $lj/rclone_mount.sh start >/var/ds/rclone_mount.log 2>&1 &
+	nohup $loc_sh/rclone_mount.sh start >/var/ds/rclone_mount.log 2>&1 &
 	echo "检查df -h 输出命令看有无rclone挂载的盘"
 	df -h
 	

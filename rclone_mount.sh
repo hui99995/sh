@@ -1,5 +1,5 @@
 #!/bin/bash
-#23.02.02
+#23.02.05
 #/usr/bin/rclone mount collect:/Rclone/backup /usr/rclone \
 echo "记得手动修改 name loc loc_remote loc_config 挂载需要的几个参数"
 name="cooo_backup" #name 手动配置修改

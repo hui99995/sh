@@ -19,6 +19,17 @@ if [[ $1 = install ]]; then
 	echo "已安装探针库"
 
 elif [[ $1 = start ]]; then
+	ID=`ps -aux|grep /usr/sju/py/status-psutil.py | awk '{printf $2 " "}'`
+	echo $ID
+	echo "---------------"
+	for id in $ID
+	do
+	kill -9 $id
+	echo "killed $id"
+	done
+	echo "-------done--------"
+    echo "已停止"
+
 	python3 $lj/status-psutil.py
     echo "已启动"
 

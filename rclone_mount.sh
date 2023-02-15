@@ -1,5 +1,6 @@
 #!/bin/bash
 #23.02.05
+#vim /usr/sju/sh/rclone_mount.sh
 #/usr/bin/rclone mount collect:/Rclone/backup /usr/rclone \
 echo "记得手动修改 name loc loc_remote loc_config 挂载需要的几个参数"
 name="cooo_backup" #name 手动配置修改
@@ -13,6 +14,8 @@ if [[ $1 = nohup ]]; then
 	fusermount -qzu $loc #先卸载再挂载
 	nohup $loc_sh/rclone_mount.sh start >/var/ds/rclone_mount.log 2>&1 &
 	echo "检查df -h 输出命令看有无rclone挂载的盘"
+	sleep 3s
+	
 	df -h
 	
 elif [[ $1 = install ]]; then
@@ -34,7 +37,7 @@ elif [[ $1 = start ]]; then
 			--buffer-size 32M \
 			--low-level-retries 200 \
 				--vfs-cache-mode writes
-	df -h
+	
 
 elif [[ $1 = rm ]]; then #删除配置文件 为了安全
 	echo "删除Rclone配置文件中ing 检查输出日志"
@@ -45,6 +48,13 @@ elif [[ $1 = rm ]]; then #删除配置文件 为了安全
 	ls
 	echo "检查df -h 输出命令看有无rclone挂载的盘"
 
+elif [[ $1 = umount ]]; then #删除配置文件 为了安全
+	fusermount -qzu $loc #先卸载再挂载
+	df -h
+	cd /root/.config/rclone/
+	ls
+	echo "检查df -h 输出命令看有无rclone挂载的盘"
+	
 else
 	echo "缺第一启动参数"
 	echo "install安装Rclone"

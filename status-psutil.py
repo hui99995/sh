@@ -3,7 +3,7 @@
 # 依赖于psutil跨平台库：
 # 支持Python版本：2.6 to 3.7
 # 支持操作系统： Linux, Windows, OSX, Sun Solaris, FreeBSD, OpenBSD and NetBSD, both 32-bit and 64-bit architectures
-
+#vim /usr/sju/py/status-psutil.py nohup /usr/sju/py/status-psutil.py > /var/ds/status-psutil.py.log 2>&1 &
 import socket
 import time
 import json
@@ -11,10 +11,10 @@ import psutil
 from collections import deque
 import socket
 
-SERVER = "status.crcc.ml"
+SERVER = "status.hagoni.org"
 PORT = 35601
 #USER = "HK4"
-USER = socket.gethostname().lower() #手动修改为二级域名 或者直接获取主机名为二级域名
+USER = socket.gethostname()#手动修改为二级域名 或者直接获取主机名为二级域名
 PASSWORD = "az.%jm"
 INTERVAL = 1  # 更新间隔，单位：秒
 
